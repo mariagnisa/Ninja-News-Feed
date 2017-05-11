@@ -74,22 +74,22 @@
 
   //If a user push submit, a new post is created and can be pushed into the $post since $post is already declared.
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $title= $_POST['title'];
-    $author= '1';
-    $textContent= $_POST['textContent'];
-    $date= date("Y/m/d");
+      $title= $_POST['title'];
+      $author= '1';
+      $textContent= $_POST['textContent'];
+      $date= date("Y/m/d");
 
     //A new post is created and pushed to the array $post.
     $newPost = ['title'=> $title, 'textContent'=> $textContent,
     'author'=> $author, 'date'=> $date, 'like'=> 0];
 
-    array_push($post, $newPost);
+      array_push($post, $newPost);
   }
 
   //Sort by date
-  function sortDate($a, $b){
-    return $b['date'] <=> $a['date'];
+  function sortDate($a, $b)
+  {
+      return $b['date'] <=> $a['date'];
   }
   usort($post, 'sortDate');
 
@@ -118,7 +118,8 @@
   </div>
 
   <!--Go through $post and print each posts -->
-  <?php for ($i=0; $i < sizeOf($post); $i++) {?>
+  <?php for ($i=0; $i < sizeOf($post); $i++) {
+      ?>
     <div class="post">
       <section class="section">
         <article class="article">
@@ -127,13 +128,12 @@
             <!--Go through $user and finds the author of the post and print the name and gets the image based on userId.-->
             <?php
             for ($y=0; $y < sizeOf($user); $y++) {
-              $author = $user[$y];
-              if($post[$i]['author'] == $author['userId']) {
-                echo '<img src="avatar/avatar_' . $author['userId'] . '.jpg" alt="avatar" />';
-                echo '<div class="name-wrapper"><p>' . $author['fullName'] . '</p></div>';
-              }
-            }
-            ?>
+                $author = $user[$y];
+                if ($post[$i]['author'] == $author['userId']) {
+                    echo '<img src="avatar/avatar_' . $author['userId'] . '.jpg" alt="avatar" />';
+                    echo '<div class="name-wrapper"><p>' . $author['fullName'] . '</p></div>';
+                }
+            } ?>
           </div>
           <p> <?= $post[$i]['textContent']?> </p>
           <p>Publicerat: <?= $post[$i]['date']?> </p>
@@ -141,7 +141,8 @@
         </article>
       </section>
     </div>
-    <?php } ?>
+    <?php 
+  } ?>
 
 
   </div>
